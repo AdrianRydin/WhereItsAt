@@ -7,6 +7,7 @@ import BackArrow from "../../components/BackArrow/BackArrow";
 
 function Cart() {
   const [cart, setCart] = useState([]);
+  const [notification, setNotification] = useState("");
 
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -53,7 +54,7 @@ function Cart() {
 
   return (
     <section className="cart-container flex">
-      <BackArrow />
+      <BackArrow alt="Tillbaka till förra sidan" />
       <h1 className="pink-text">Shopping Cart</h1>
 
       <section className="orders-wrapper">
@@ -112,11 +113,24 @@ function Cart() {
             fontSize: "22px",
             fontWeight: "semibold",
           }}
-          onClick={purchaseTickets}
+          onClick={() => {
+            purchaseTickets();
+            setNotification(`Biljett(er) skickade till "My Tickets"`);
+
+            setTimeout(() => {
+              setNotification("");
+            }, 2000);
+          }}
+          aria-label="Lägg till order"
         >
           Skicka order
         </Button>
       </section>
+      {notification && (
+        <div className="notification">
+          <p>{notification}</p>
+        </div>
+      )}
     </section>
   );
 }

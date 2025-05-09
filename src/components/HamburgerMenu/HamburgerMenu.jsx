@@ -13,7 +13,11 @@ function Hamburger() {
 
   return (
     <div>
-      <button onClick={toggleMenu} className="hamburger-button">
+      <button
+        onClick={toggleMenu}
+        className="hamburger-button"
+        aria-label="Öppna hamburgar meny"
+      >
         <motion.span
           animate={{
             rotate: isOpen ? 45 : 0,
@@ -43,13 +47,28 @@ function Hamburger() {
         className="hamburger-menu hamburger-menu-white"
       >
         <ul>
-          <Link to={"/"} className="link" onClick={toggleMenu}>
+          <Link
+            to={"/"}
+            className="link"
+            onClick={toggleMenu}
+            aria-label="Gå till framsidan"
+          >
             <li>Home</li>
           </Link>
-          <Link to={"/tickets"} className="link" onClick={toggleMenu}>
+          <Link
+            to={"/tickets"}
+            className="link"
+            onClick={toggleMenu}
+            aria-label="Gå till biljett sidan"
+          >
             <li>My Tickets</li>
           </Link>
-          <Link to={"/cart"} className="link" onClick={toggleMenu}>
+          <Link
+            to={"/cart"}
+            className="link"
+            onClick={toggleMenu}
+            aria-label="Gå till kundvagn"
+          >
             <li>Shopping cart</li>
           </Link>
         </ul>

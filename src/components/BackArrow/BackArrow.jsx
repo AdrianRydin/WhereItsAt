@@ -6,7 +6,11 @@ import { Link } from "react-router-dom";
 function BackArrow() {
   return (
     <div>
-      <Link to={"/"} state={{ swipeIndex: 1 }}>
+      <Link
+        to={"/"}
+        state={{ swipeIndex: 1 }}
+        aria-label="Gå till evenemang sidan"
+      >
         <KeyboardArrowLeftIcon
           sx={{
             position: "fixed",

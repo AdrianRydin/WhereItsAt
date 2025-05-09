@@ -43,7 +43,7 @@ function Tickets() {
       <BackArrow />
       <h1 className="pink-text">My Tickets</h1>
 
-      <div className="ticket-list">
+      <div className="ticket-list" aria-live="polite">
         {tickets.map((ticket) => (
           <section key={ticket.id} className="ticket-card">
             <aside className="ticket-title-container">
@@ -81,7 +81,9 @@ function Tickets() {
             </aside>
 
             <aside className="bar-code-container">
-              <h1 className="barcode">{ticket.barcode}</h1>
+              <h1 className="barcode" aria-label="Barcode för biljett">
+                {ticket.barcode}
+              </h1>
               <p>#{ticket.barcode}</p>
             </aside>
           </section>

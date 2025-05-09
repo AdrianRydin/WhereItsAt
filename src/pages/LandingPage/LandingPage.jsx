@@ -60,10 +60,18 @@ function LandingPage() {
         dragConstraints={{ left: 0, right: 0 }}
         onDragEnd={handleSwipe}
         style={{ x, opacity }}
+        tabIndex="0"
+        onKeyDown={(e) => {
+          if (e.key === "ArrowRight") {
+            setSwipeIndex(1);
+          } else if (e.key === "ArrowLeft") {
+            setSwipeIndex(0);
+          }
+        }}
       >
         {swipeIndex === 0 ? (
           <section className="landing-page-first-slide-container">
-            <img src={Logo} alt="Logo" />
+            <img src={Logo} alt="Logo for Where It's At" />
             <aside className="landing-page-text-container">
               <h1>Where It's @</h1>
               <p>Ticketing made easy</p>
@@ -82,6 +90,7 @@ function LandingPage() {
                     height: "30px",
                     color: "white",
                   }}
+                  aria-label="Gå till kundvagn"
                 />
               </Link>
               <h1 className="event-list-title">Events</h1>
@@ -92,6 +101,7 @@ function LandingPage() {
                 color="warning"
                 size="small"
                 fullWidth
+                label="Search"
                 sx={{
                   marginBottom: "1.5rem",
                   backgroundColor: "#FFFFFF10",
@@ -102,6 +112,9 @@ function LandingPage() {
                     paddingBottom: "16px",
                     color: "white",
                     fontFamily: "Fira Sans",
+                  },
+                  "& Label": {
+                    opacity: "0",
                   },
                 }}
                 InputProps={{
@@ -135,6 +148,7 @@ function LandingPage() {
                         to={`/event/${e.id}`}
                         className="link"
                         state={{ e, index }}
+                        aria-label={`Visa detaljer för ${e.name} evenemanget`}
                       >
                         <aside className="event-name-where-container">
                           <h1>{e.name}</h1>

@@ -14,7 +14,7 @@ function IndividualEvent() {
   const [notification, setNotification] = useState("");
 
   if (!e) {
-    return <div>No event data found.</div>;
+    return <div aria-live="assertive">No event data found.</div>;
   }
 
   function increaseAmount() {
@@ -28,7 +28,7 @@ function IndividualEvent() {
 
   return (
     <section className="event-details-container">
-      <BackArrow />
+      <BackArrow alt="Tillbaka till förra sidan" tabIndex="0" />
       <h1 className="event-details-container__header-title">Event</h1>
 
       <h2 className="event-details-container__desc">
@@ -56,13 +56,19 @@ function IndividualEvent() {
 
         <aside className="amount-container">
           <aside className="amount-item">
-            <RemoveIcon onClick={decreaseAmount} />
+            <RemoveIcon
+              onClick={decreaseAmount}
+              aria-label="Minska mängden biljetter"
+            />
           </aside>
           <aside className="amount-item">
-            <h1>{amount}</h1>
+            <h1 id="quantity-display">{amount}</h1>
           </aside>
           <aside className="amount-item">
-            <AddIcon onClick={increaseAmount} />
+            <AddIcon
+              onClick={increaseAmount}
+              aria-label="Öka mängden av biljetter"
+            />
           </aside>
         </aside>
       </section>
@@ -100,6 +106,7 @@ function IndividualEvent() {
             setNotification("");
           }, 2000);
         }}
+        aria-label={`Lägg till ${amount} biljetter till kundvagnen`}
       >
         Lägg i varukorgen
       </Button>
