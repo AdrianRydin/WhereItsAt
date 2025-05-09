@@ -1,7 +1,6 @@
 .Landing-page-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 100vh;
 }
@@ -44,8 +43,6 @@
   overflow: hidden;
 }
 
-/* Event list  */
-
 .event-list-container {
   display: flex;
   flex-direction: column;
@@ -54,6 +51,19 @@
   background-color: #231f42;
   padding: 2rem;
   width: 80%;
+}
+.landing-page-first-slide-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.landing-page-first-slide-container img {
+  max-width: 100%;
+  height: auto;
 }
 
 .event-list-title {

@@ -1,1 +1,20 @@
+.pink-text {
+  color: #f56b9a;
+  font-size: 28px;
+  font-family: Sansita-One;
+}
 
+.pink-text-shadow {
+  text-shadow: 1px 1px #f56b9a;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}

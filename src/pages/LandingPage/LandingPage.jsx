@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./landingPage.css";
 import Logo from "../../assets/Logo.png";
 // eslint-disable-next-line no-unused-vars
@@ -8,10 +8,21 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import useSwipeStore from "../../stores/swipeStore";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 function LandingPage() {
   const { events, isLoading, error, fetchData } = eventsStore();
-  const [swipeIndex, setSwipeIndex] = useState(0);
+  const { swipeIndex, setSwipeIndex } = useSwipeStore();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.swipeIndex === 1) {
+      setSwipeIndex(1);
+    }
+  }, [location.state, setSwipeIndex]);
 
   useEffect(() => {
     fetchData();
@@ -28,6 +39,7 @@ function LandingPage() {
         setSwipeIndex(1);
       });
     } else if (info.offset.x > 100 && swipeIndex === 1) {
+      // Swipe höger
       animate(x, 300, { duration: 0.2 }).then(() => {
         x.set(0);
         setSwipeIndex(0);
@@ -50,16 +62,28 @@ function LandingPage() {
         style={{ x, opacity }}
       >
         {swipeIndex === 0 ? (
-          <>
+          <section className="landing-page-first-slide-container">
             <img src={Logo} alt="Logo" />
             <aside className="landing-page-text-container">
               <h1>Where It's @</h1>
               <p>Ticketing made easy</p>
             </aside>
-          </>
+          </section>
         ) : (
           <>
             <section className="event-list-container">
+              <Link to={"/cart"}>
+                <ShoppingCartIcon
+                  sx={{
+                    position: "fixed",
+                    top: "20px",
+                    left: "20px",
+                    width: "30px",
+                    height: "30px",
+                    color: "white",
+                  }}
+                />
+              </Link>
               <h1 className="event-list-title">Events</h1>
 
               <TextField
